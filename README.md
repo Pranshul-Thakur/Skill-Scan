@@ -1,49 +1,165 @@
 # SkillScan ATS
 
-## How to Run the Project
+AI-powered career preparation platform with resume analysis, interview question generation, and personalized study plans using Google Gemini.
 
-### **Clone the Repository**
-Download or clone this repository to your local machine:
+## Features
 
+### Resume Checker
+- ATS score calculation and optimization suggestions
+- PDF/DOCX file support
+- Three analysis modes: Quick Scan, Detailed Analysis, ATS Optimization
+- Job description matching
+- Keyword density analysis
 
-## **Put your gemini API key in the .env file**
-## **FrontEnd**
-### **Live Version**
-You can access the frontend directly at:
-🔗 [SkillScan ATS](https://skill-scan-ats.vercel.app/)
+### Interview Questions
+- Role-specific interview questions scraped from GeeksforGeeks
+- Instant answers for each question
+- 9 technical roles supported
 
-### **Run Locally**
-Alternatively, you can run the frontend on your local machine:
-1. Open the **React_FrontEnd** folder in **VS Code** (or any preferred editor).
+### Study Plan Generator
+- Customizable preparation timeline (1-12 weeks)
+- Role-specific learning roadmap
+- Daily practice problems from LeetCode
+- Resource recommendations (books, videos, articles)
+
+## Tech Stack
+
+### Backend
+- Flask REST APIs (3 separate services)
+- Google Gemini 1.5 Flash for AI analysis
+- BeautifulSoup for web scraping
+- PyMuPDF for PDF parsing
+- python-docx for DOCX parsing
+
+### Frontend
+- React 19 with React Router
+- Lottie animations
+- Deployed on Vercel
+
+## Project Structure
+
+```
+├── Advanced-ATS-Resume-Checker/
+│   ├── app.py           # Resume analysis API
+│   ├── app2.py          # Study plan generator API
+│   ├── app3.py          # Interview questions API
+│   └── requirements.txt
+├── React_FrontEnd/my-app/
+│   ├── src/
+│   │   ├── App.js       # Main React components
+│   │   └── App.css      # Styling
+│   └── package.json
+└── README.md
+```
+
+## Setup
+
+### Backend Setup
+
+1. Navigate to backend directory:
+```bash
+cd Advanced-ATS-Resume-Checker
+```
+
 2. Install dependencies:
-   ```sh
-   npm install
-   ```
-3. Start the development server:
-   ```sh
-   npm start
-   ```
+```bash
+pip install -r requirements.txt
+```
 
----
+3. Create `.env` file:
+```
+GOOGLE_API_KEY=your_gemini_api_key
+```
 
-## **BackEnd**
-### **Run Locally**
-To run the backend, follow these steps:
-1. Open a terminal and navigate to the **Advanced-ATS-Resume-Checker** folder .
-2. Run the following commands:
-   ```sh
-   python app.py
-   python app2.py
-   python app3.py
-   ```
+4. Run all three services (separate terminals):
+```bash
+python app.py      # Port 5000
+python app2.py     # Port 5002
+python app3.py     # Port 5001
+```
 
-⚠️ **All terminals must remain running.**
-It is recommended to run all three Python files in separate terminals.
+### Frontend Setup
 
----
+1. Navigate to frontend directory:
+```bash
+cd React_FrontEnd/my-app
+```
 
-## **Usage**
-Once both the frontend and backend are running, you should be able to use the website flawlessly.
+2. Install dependencies:
+```bash
+npm install
+```
 
-🚀 **Happy Coding!**
+3. Start development server:
+```bash
+npm start
+```
 
+Access at `http://localhost:3000`
+
+## Live Demo
+
+Frontend: [https://skill-scan-ats.vercel.app/](https://skill-scan-ats.vercel.app/)
+
+Backend endpoints:
+- Resume: `https://backend-skill-ihvv.onrender.com`
+- Study Plan: `https://backend-skill-1.onrender.com`
+- Questions: `https://backend-skill-2.onrender.com`
+
+## API Endpoints
+
+### Resume Analysis
+```http
+POST /analyze
+Content-Type: multipart/form-data
+
+Fields:
+- resume: file (PDF/DOCX)
+- job_description: text
+- analysis_option: string
+```
+
+### Study Plan Generation
+```http
+POST /generate-study-plan
+Content-Type: application/json
+
+{
+  "role": "Software Engineer",
+  "weeks": 4
+}
+```
+
+### Interview Questions
+```http
+POST /get-interview-questions
+Content-Type: application/json
+
+{
+  "role": "Backend Engineer"
+}
+```
+
+## Supported Roles
+
+- Backend Engineer
+- Frontend Engineer
+- Fullstack Engineer
+- AI/ML Engineer
+- MLOps Engineer
+- SDE
+- Data Scientist
+- Data Analyst
+- HR Interview Questions
+
+## Requirements
+
+- Python 3.8+
+- Node.js 14+
+- Google API key with Gemini access
+
+## Notes
+
+- All three Flask services must run simultaneously
+- Backend services deployed on Render (may have cold start delays)
+- Frontend uses React 19 features
